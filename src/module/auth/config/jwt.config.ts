@@ -5,7 +5,9 @@ export const JwtConfig: JwtModuleAsyncOptions = {
   imports: [ConfigModule],
   useFactory: (configService: ConfigService) => ({
     secret: configService.get<string>('JWT_SECRET'),
-    signOptions: { expiresIn: +configService.get<number>('JWT_EXPIRATION') },
+    signOptions: {
+      expiresIn: configService.get<number | string>('JWT_EXPIRATION'),
+    },
   }),
   inject: [ConfigService],
 };
