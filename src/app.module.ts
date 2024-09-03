@@ -1,9 +1,8 @@
 import { Module, ValidationPipe } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { DatabaseModule } from './database/database.module';
+import { AdminModule } from './module/admin/admin.module';
 import { AuthModule } from './module/auth/auth.module';
 
 @Module({
@@ -11,10 +10,10 @@ import { AuthModule } from './module/auth/auth.module';
     ConfigModule.forRoot({ isGlobal: true, envFilePath: '.env' }),
     DatabaseModule,
     AuthModule,
+    AdminModule,
   ],
-  controllers: [AppController],
+  controllers: [],
   providers: [
-    AppService,
     {
       provide: APP_PIPE,
       useValue: new ValidationPipe({
