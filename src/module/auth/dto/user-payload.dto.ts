@@ -11,4 +11,8 @@ export class UserPayload {
       Object.assign(this, partial);
     }
   }
+
+  public hasRole(roles: RoleEnum[]): boolean {
+    return roles.includes(this.role);
+  }
 }
